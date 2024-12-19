@@ -42,7 +42,7 @@ The 2-qubit system evolves under the following conditions:
 
 This work is © Robert Canaway, 2024. All rights reserved.
 
-Use of this repository is subject to licensing agreements. For inquiries, please contact [Your Contact Information].
+Use of this repository is subject to licensing agreements. For inquiries, please contact canners31@gmail.com
 
 ## Contribution
 
