@@ -50,4 +50,4 @@ This repository is open for peer review, contributions, and extensions. Feel fre
 
 ---
 
-For questions or suggestions, contact [Your Contact Information].
+For questions or suggestions, contact canners31@gmail.com
