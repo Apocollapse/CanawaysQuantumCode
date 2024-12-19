@@ -1,53 +1,53 @@
+# Canaway's Quantum Code (CQC)
 
-# CQC Quantum Computing Simulation
+This repository is a Python-based framework for exploring **Canaway's Quantum Code (CQC)**, a theoretical model for quantum state evolution under the influence of decoherence, curvature, and boundary effects. It provides simulations for both foundational quantum theory (e.g., phase collapse) and practical applications (e.g., quantum computing).
 
-This repository contains a Python-based simulation and modular code for testing the Canaway's Quantum Code (CQC) framework in the context of quantum computing. It includes simulations of 2-qubit systems under the effects of gate operations, decoherence control, and dynamic feedback mechanisms.
+## Repository Structure
+
+- **core_simulations/**:
+  Foundational simulations demonstrating key CQC concepts, including:
+  - Phase collapse dynamics.
+  - Multi-particle interactions.
+  
+- **quantum_computing_simulations/**:
+  Practical applications of CQC in quantum computing, including:
+  - Qubit state simulation.
+  - Implementation of gate operations (Hadamard, CNOT).
+  
+- **docs/**:
+  Documentation and references, such as:
+  - An overview of the CQC framework.
+  - Theoretical references for further reading.
+
+- **assets/**:
+  Visual assets, diagrams, and images to support the simulations and documentation.
 
 ## Features
 
-- **Qubit State Simulation:**
+### **Core Simulations**
+- **Phase Collapse Dynamics**:
+  - Simulates the collapse of quantum states under decoherence.
+  - Demonstrates how the CQC framework handles collapse outcomes.
+
+- **Multi-Particle Simulations**:
+  - Models the interactions of multiple quantum particles.
+  - Explores the effects of decoherence and curvature on entanglement.
+
+### **Quantum Computing Applications**
+- **Qubit State Simulation**:
   - Models two qubits in the Bloch sphere representation.
   - Demonstrates the effects of decoherence and quantum gates.
 
-- **Gate Operations:**
+- **Gate Operations**:
   - Implements Hadamard and CNOT gates, showcasing quantum logic and entanglement.
 
-- **Decoherence Suppression:**
+- **Decoherence Suppression**:
   - Uses the CQC framework to manage qubit stability and coherence retention.
 
 ## Usage
 
-1. **Download or Clone:**
+1. **Download or Clone**:
    Clone the repository to your local machine:
-   ```
-   git clone https://github.com/yourusername/CQC_Quantum_Computing_Simulation.git
-   ```
+   ```bash
+   git clone https://github.com/yourusername/CanawaysQuantumCode.git
 
-2. **Run the Simulation:**
-   Execute the Python script to visualize qubit state evolution:
-   ```
-   python cqc_quantum_computing_platform.py
-   ```
-
-3. **Extend for Platforms:**
-   The modular code is ready for integration with quantum computing platforms like IBM Q or Google Sycamore.
-
-## Simulation Insights
-
-The 2-qubit system evolves under the following conditions:
-- Decoherence is managed dynamically using the CQC framework.
-- Gate operations (Hadamard and CNOT) influence the state trajectory, demonstrating the interplay between quantum logic and coherence control.
-
-## License and Copyright
-
-This work is © Robert Canaway, 2024. All rights reserved.
-
-Use of this repository is subject to licensing agreements. For inquiries, please contact [Your Contact Information].
-
-## Contribution
-
-This repository is open for peer review, contributions, and extensions. Feel free to fork, suggest changes, or extend the functionality to more complex quantum systems.
-
----
-
-For questions or suggestions, contact [Your Contact Information].
