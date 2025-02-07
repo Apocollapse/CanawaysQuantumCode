@@ -1,0 +1,38 @@
+name: Auto-Run Canaways Quantum Code
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 0 * * *' # Runs once per day at midnight UTC
+  workflow_dispatch: # Allows manual execution from GitHub
+
+jobs:
+  run-cqc:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install qiskit numpy scipy
+
+      - name: Run Canaways Quantum Code
+        run: python core_simulations/canaways_quantum_code.py
+
+      - name: Auto-commit and push results
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions@github.com"
+          git add -A
+          git commit -m "Auto-run results update [skip ci]" || echo "No changes to commit"
+          git push origin main || echo "No changes to push"
