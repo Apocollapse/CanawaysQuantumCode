@@ -24,7 +24,8 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install qiskit qiskit-aer numpy scipy
+          pip install qiskit numpy scipy
+          pip install qiskit-aer --no-cache-dir
 
       - name: Run Canaways Quantum Code
         run: python core_simulations/canaways_quantum_code.py
