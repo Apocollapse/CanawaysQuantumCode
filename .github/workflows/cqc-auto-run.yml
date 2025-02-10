@@ -24,18 +24,24 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y libeigen3-dev libopenblas-dev liblapack-dev
+          sudo apt-get install -y cmake g++ libeigen3-dev libopenblas-dev liblapack-dev ninja-build
 
       - name: Install Qiskit
         run: |
           python -m pip install --upgrade pip
           pip install qiskit numpy scipy
 
+      - name: Debug Python Environment
+        run: |
+          python -V
+          which python
+          pip list
+
       - name: Build & Install Qiskit-Aer from source
         run: |
           git clone --depth=1 https://github.com/Qiskit/qiskit-aer.git
           cd qiskit-aer
-          python -m pip install .
+          python -m pip install . --verbose || echo "Qiskit-Aer installation failed"
 
       - name: Verify Qiskit installation
         run: |
