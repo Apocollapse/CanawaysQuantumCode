@@ -24,7 +24,7 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y cmake g++ libeigen3-dev libopenblas-dev liblapack-dev ninja-build
+          sudo apt-get install -y cmake g++ libeigen3-dev libopenblas-dev liblapack-dev ninja-build python3-dev python3-pip python3-setuptools python3-wheel
 
       - name: Install Qiskit dependencies
         run: |
@@ -48,11 +48,13 @@ jobs:
             git clone --depth=1 https://github.com/Qiskit/qiskit-aer.git
             cd qiskit-aer
             python -m pip install . --verbose
+            cd ..
           fi
-          if ! python -c "from qiskit import Aer" 2>/dev/null; then
-            echo "Qiskit-Aer failed to install properly!"
-            exit 1
-          fi
+
+      - name: Reload Python Packages and Reinstall Qiskit-Aer
+        run: |
+          python -m pip install --upgrade --force-reinstall qiskit-aer
+          python -c "import site; print(site.getsitepackages())"
 
       - name: Verify Qiskit installation
         run: |
