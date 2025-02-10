@@ -21,11 +21,21 @@ jobs:
         with:
           python-version: '3.9'
 
-      - name: Install dependencies
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libeigen3-dev libopenblas-dev liblapack-dev
+
+      - name: Install Qiskit
         run: |
           python -m pip install --upgrade pip
           pip install qiskit numpy scipy
-          pip install qiskit-aer --no-cache-dir || echo "Qiskit-Aer installation failed"
+
+      - name: Build & Install Qiskit-Aer from source
+        run: |
+          git clone --depth=1 https://github.com/Qiskit/qiskit-aer.git
+          cd qiskit-aer
+          python -m pip install .
 
       - name: Verify Qiskit installation
         run: |
