@@ -9,7 +9,7 @@ on:
   workflow_dispatch:  # Allows manual execution from GitHub
 
 permissions:
-  contents: write  # Ensures GitHub Actions has write access to the repo
+  contents: write  # Ensures GitHub Actions has write access
 
 jobs:
   run-cqc:
@@ -24,11 +24,13 @@ jobs:
         with:
           python-version: '3.9'
 
-      - name: Install system dependencies
+      - name: Install system dependencies (Qiskit-Aer Requirements)
         run: |
           sudo apt-get update
           sudo apt-get install -y cmake g++ libeigen3-dev libopenblas-dev liblapack-dev \
-          ninja-build python3-dev python3-pip python3-setuptools python3-wheel
+          ninja-build python3-dev python3-pip python3-setuptools python3-wheel \
+          libgomp1 libstdc++6 libtbb2 libtbb-dev
+          echo "System dependencies installed."
 
       - name: Install Qiskit and dependencies
         run: |
@@ -56,7 +58,8 @@ jobs:
             cd ..
           fi
           if ! python -c "from qiskit import Aer" 2>/dev/null; then
-            echo "Qiskit-Aer failed to install properly!"
+            echo "Qiskit-Aer failed to install properly! Checking why..."
+            ls -l /opt/hostedtoolcache/Python/3.9.*/x64/lib/python3.9/site-packages/qiskit_aer
             exit 1
           fi
 
@@ -73,12 +76,6 @@ jobs:
       - name: Run Canaways Quantum Code
         run: |
           python core_simulations/canaways_quantum_code.py || echo "Code execution failed"
-
-      - name: Remove Git Submodule Conflict (if exists)
-        run: |
-          git submodule deinit -f qiskit-aer || echo "No submodule to remove"
-          git rm -rf qiskit-aer || echo "No submodule to remove"
-          rm -rf .git/modules/qiskit-aer || echo "No submodule metadata found"
 
       - name: Auto-commit and push results
         env:
