@@ -22,9 +22,9 @@ jobs:
           python-version: '3.9'
 
       - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install qiskit numpy scipy
+  run: |
+    python -m pip install --upgrade pip
+    pip install qiskit qiskit-aer numpy scipy
 
       - name: Run Canaways Quantum Code
         run: python core_simulations/canaways_quantum_code.py
