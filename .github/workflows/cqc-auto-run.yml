@@ -5,8 +5,8 @@ on:
     branches:
       - main
   schedule:
-    - cron: '0 0 * * *' # Runs once per day at midnight UTC
-  workflow_dispatch: # Allows manual execution from GitHub
+    - cron: '0 0 * * *'  # Runs once per day at midnight UTC
+  workflow_dispatch:  # Allows manual execution from GitHub
 
 jobs:
   run-cqc:
@@ -22,9 +22,9 @@ jobs:
           python-version: '3.9'
 
       - name: Install dependencies
-  run: |
-    python -m pip install --upgrade pip
-    pip install qiskit qiskit-aer numpy scipy
+        run: |
+          python -m pip install --upgrade pip
+          pip install qiskit qiskit-aer numpy scipy
 
       - name: Run Canaways Quantum Code
         run: python core_simulations/canaways_quantum_code.py
