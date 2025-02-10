@@ -21,19 +21,26 @@ jobs:
         with:
           activate-environment: qiskit-env
           python-version: 3.9
+          auto-activate-base: false
 
       - name: Install dependencies
         shell: bash -l {0}
         run: |
+          conda init bash
+          source ~/.bashrc
+          conda activate qiskit-env
           conda install -c conda-forge qiskit qiskit-aer numpy scipy -y
 
       - name: Run Canaways Quantum Code
         shell: bash -l {0}
-        run: python core_simulations/canaways_quantum_code.py
+        run: |
+          conda activate qiskit-env
+          python core_simulations/canaways_quantum_code.py
 
       - name: Auto-commit and push results
         shell: bash -l {0}
         run: |
+          conda activate qiskit-env
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions@github.com"
           git add -A
